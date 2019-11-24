@@ -1,0 +1,39 @@
+	.data
+	# Variaveis ultilizadas
+N1:	.asciiz "\nDigite o 1 numero: \n"
+N2:	.asciiz "\nDigite o 2 numero: \n"
+SOM:	.asciiz "\nA soma dos numero e: \n"
+	.text
+	
+	# Imprime string N1 e armazena o primeiro numero no registrador
+main:	addi $v0,$zero,4
+	la $a0, N1
+	syscall
+	addi $v0,$zero,5
+	syscall
+	add $s0,$zero,$v0
+
+	# Imprime string N2 e armazena o primeiro numero no registrador
+	addi $v0,$zero,4
+	la $a0, N2
+	syscall
+	addi $v0,$zero,5
+	syscall
+	add $s1,$zero,$v0
+	
+	# Imprime string SOM (soma)
+	addi $v0,$zero,4
+	la $a0, SOM
+	syscall
+	
+	# Operacao solicitada (soma)
+	add $s5,$s0,$s1
+	
+	# Imprime resultados
+	add $t0,$s5,$zero
+	addi $v0,$zero,1
+	add $a0,$zero,$t0
+	syscall
+
+	# Fim Junior senhora
+	jr $ra
